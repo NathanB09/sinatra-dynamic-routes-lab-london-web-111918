@@ -19,15 +19,16 @@ class App < Sinatra::Base
   end
 
   get "/:operation/:number1/:number2" do
+    nums = [params[:number1].to_i, params[:number2].to_i]
     case params[:operation]
     when "add"
-      "#{params[:number1].to_i + params[:number2].to_i}"
+      "#{nums.reduce(:+)}"
     when "subtract"
-      "#{params[:number1].to_i - params[:number2].to_i}"
+      "#{nums.reduce(:-)}"
     when "multiply"
-      "#{params[:number1].to_i * params[:number2].to_i}"
+      "#{nums.reduce(:*)}"
     when "divide"
-      "#{params[:number1].to_i / params[:number2].to_i}"
+      "#{nums.reduce(:/)}"
     end
   end
 
